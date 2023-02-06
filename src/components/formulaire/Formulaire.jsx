@@ -1,9 +1,16 @@
+/*POUR CE COMPOSANT NE PAS OUBLIER D'IMPORTER :
+react-hook-form.........................pour la validation du formulaire
+react-datepicker........................pour le calendrier date de naissance
+*/
+
+
 import React from 'react';
 import {useState} from "react"
 import ModalMerci from "./ModalMerci"
 import "./Formulaire.css"
-import {useForm} from "react-hook-form"
-
+import {useForm, Controller} from "react-hook-form"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 //permet de simuler un temps d'attente entre la soumission du formulaire et l'arrivée de la modale merci
@@ -13,19 +20,28 @@ const wait = function (duration = 1000) {
     })
 }
 
+
+
+
 function Formulaire ({closeFormulaire}) {
-    const {register, handleSubmit, formState: {errors}} = useForm()
+    
+    const {register, handleSubmit, formState: {errors}, control} = useForm({
+        mode: "onTouched"       //permet que le message d'erreur apparaisse dés que l'on change de champ
+    })
 
     const onSubmit = async data => {
+        console.log(data)
+
         await wait(1500)
         let form = document.querySelector(".content");
         form.style.display= "none";
+        document.getElementById("formulaire").reset()
         setModalMerci(true);
         console.log(data)
     }
     console.log(errors);
     const [modalMerci, setModalMerci] = useState(false);
-
+    const [startDate, setStartDate] = useState();
 
     return (
         <>
@@ -49,6 +65,21 @@ function Formulaire ({closeFormulaire}) {
                         </div>
 
                         <div className="formData">
+                            <label htmlFor="ddn">Date de naissance</label><br/>
+                            <Controller
+                                control={control}
+                                name="birthday"
+                                render={({ onChange, onBlur, value }) => (
+                                    <DatePicker
+                                    selected={startDate}
+                                    onBlur={onBlur}
+                                    onChange={(date) => setStartDate(date)}
+                                    />
+                                )}
+                            /> 
+                        </div>
+
+                        <div className="formData">
                             <label htmlFor="email">Email</label><br/>
                             <input type="text" className="form-control"  id="email" name="email"  {...register("email", { pattern: /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/i, required: true}
                             )} />
@@ -57,7 +88,7 @@ function Formulaire ({closeFormulaire}) {
                         
                         <div className="formData">
                             <label htmlFor="password">Password</label><br/>
-                            <input type="text" className="form-control"  id="password" name="password" {...register("password", {required: true, minLength: 5}
+                            <input type="password" className="form-control"  id="password" name="password" {...register("password", {required: true, minLength: 5}
                             )} />
                             {errors.password && <p>Veuillez entrer 5 caractères ou plus pour le champ du nom.</p>}
                         </div>

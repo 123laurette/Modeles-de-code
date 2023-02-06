@@ -1,0 +1,23 @@
+.modalBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 3% auto;
+    width: 570px;
+    height: 300px;
+    background: #01010d77;
+    border-radius: 10px;
+    position: relative;
+    color: #fff;
+    padding-top: 10px;
+}
+.merci{
+    font-family: cursive;
+    font-size: 20px;
+}
+#fermer{
+    width: 200px;
+    margin: 0;
+    margin-bottom: 20px;
+}

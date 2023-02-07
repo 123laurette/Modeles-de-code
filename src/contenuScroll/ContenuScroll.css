@@ -1,0 +1,83 @@
+.bcg {
+    background: rgb(123, 123, 244);
+    width: 100%;
+    height: auto;
+    position: absolute;
+}
+
+.container {
+    border: rgb(237, 212, 235) solid;
+    background-color: rgb(237, 212, 235);
+    position: fixed;
+    width: 50%;
+    height: 768px;
+    border-radius: 15px;
+    margin-left: 20%;
+    margin-top: 50px;
+    overflow-y: auto;   /*la scroll barre s'affiche seulement si le texte dépasse du container*/
+}
+
+::-webkit-scrollbar{
+    background: linear-gradient(to bottom, rgb(242, 210, 234),rgb(236, 96, 226), rgb(35, 2, 35) );
+    border-radius: 50px;
+
+} 
+
+/*CURSEUR DE LA SCROLL BAR : 2 COULEUR*/
+/*::-webkit-scrollbar-thumb{
+    background-color: orange;
+    border-radius: 10px;
+    height:  10px;
+
+    ::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(35, 98, 35);
+}
+}*/
+
+/*CURSEUR DE LA SCROLL BAR : DEGRADE DE COULEUR*/
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(to bottom, rgb(242, 210, 234),rgb(236, 96, 226), rgb(35, 2, 35) );
+    height:  50px;
+    width: 50px;
+    border-radius: 50px;
+}
+
+
+.forme {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 1524px;
+    
+}
+.rond1 {
+    background-color: rgb(238, 110, 110);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.rond2 {
+    background-color: rgb(52, 52, 80);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.rond3 {
+    background-color: rgb(193, 188, 108);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.rond4 {
+    background-color: rgb(34, 67, 34);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.texte {
+    width: 25%;
+    margin-left: 72.5%;
+    text-align: justify;
+}
